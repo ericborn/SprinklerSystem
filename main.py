@@ -13,6 +13,7 @@ from dateutil import parser
 
 day_schedule = []
 run_time_list = []
+run_duration_dict = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
 
 # each zone 1-6 maps to GPIO port +1 of the zone number
 # 1 maps to 2, 2 to 3, etc.
@@ -69,8 +70,17 @@ def get_run_schedule():
     else:
         return('List is empty')
 
-set_run_schedule('Wednesday')
+def set_run_duration(zone, duration):
+    if 1 <= zone <= 6 and type(duration) == int:
+        run_duration_dict[zone] = duration
 
+def get_run_duration():
+    return(run_duration_dict)
+   
+     
+set_run_duration(1, 1)
+set_run_duration(2, 1)
+set_run_schedule('Wednesday')
 set_run_time('17:00:00')
 
 # !!!TODO!!!
